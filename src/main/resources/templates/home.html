@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Notification UI</title>
+</head>
+<body>
+<h1>Notification User Interface</h1>
+
+<div th:if="${successMessage}" role="alert">
+  <p th:text="${successMessage}"></p>
+</div>
+<div th:if="${errorMessage}" role="alert">
+  <p th:text="${errorMessage}"></p>
+</div>
+
+<form  th:object="${messageFormModel}" action="/messages" method="POST">
+  <label for="category">Category:</label><br>
+  <select th:field="*{category}">
+    <option value="">Select a category</option>
+    <option th:each="option : ${categories}" th:value="${option}" th:text="${option}"></option>
+  </select>
+  <br><br>
+  <label for="message">Message: </label><br>
+  <textarea type="text" th:field="*{message}"></textarea><br><br>
+  <input type="submit" value="Post Message">
+</form>
+</body>
+</html>
