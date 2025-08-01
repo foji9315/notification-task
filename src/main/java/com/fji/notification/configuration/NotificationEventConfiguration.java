@@ -4,10 +4,9 @@ import com.fji.notification.listeners.ChannelListener;
 import com.fji.notification.listeners.impl.EmailNotificationChannel;
 import com.fji.notification.listeners.impl.PushNotificationChannel;
 import com.fji.notification.listeners.impl.SMSNotificationChannel;
-import com.fji.notification.model.Category;
+import com.fji.notification.model.CategoryEnum;
 import com.fji.notification.model.User;
 import com.fji.notification.publisher.NotificationEventManager;
-import com.fji.notification.repository.impl.CategoriesRepositoryImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,17 +25,12 @@ public class NotificationEventConfiguration {
 
     private static List<User> getRandomUsers() {
 
-        Category category = Category.builder()
-                .id(CategoriesRepositoryImpl.CategoryDAO.SPORT.getId())
-                .name(CategoriesRepositoryImpl.CategoryDAO.SPORT.getName())
-                .build();
-
         User user = User.builder()
                 .id(UUID.randomUUID().toString())
                 .name("Rocky")
                 .email("user@mock.com")
                 .phoneNumber("12345")
-                .subscribed(List.of(category))
+                .subscribed(List.of(CategoryEnum.SPORT))
                 .channels(List.of("SMS", "email", "push"))
                 .build();
         return Collections.singletonList(user);
@@ -44,7 +38,6 @@ public class NotificationEventConfiguration {
 
     @Bean(SPORT_EVENT_MANAGER)
     public NotificationEventManager getSportEventManager() {
-
         NotificationEventManager notificationEventManager = new NotificationEventManager();
         ChannelListener emailUserListener = new EmailNotificationChannel(mockUsers.get(0));
         ChannelListener smsUserListener = new SMSNotificationChannel(mockUsers.get(0));

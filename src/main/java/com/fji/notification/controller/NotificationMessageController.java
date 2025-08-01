@@ -1,9 +1,11 @@
 package com.fji.notification.controller;
 
+import com.fji.notification.model.CategoryEnum;
+import com.fji.notification.model.NotificationMessage;
 import com.fji.notification.model.dto.MessageFormModel;
 import com.fji.notification.service.CategoriesService;
-import com.fji.notification.service.NotifierDelegator;
-import lombok.RequiredArgsConstructor;
+import com.fji.notification.service.notifiers.Notifiable;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +15,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+import static com.fji.notification.service.NotifierDelegator.NOTIFIER_DELEGATOR;
+
 @Controller
-@RequiredArgsConstructor
 public class NotificationMessageController {
 
     private final CategoriesService categoriesService;
-    private final NotifierDelegator notifierDelegatorService;
+    private final Notifiable notifierDelegatorService;
+
+    public NotificationMessageController(CategoriesService categoriesService,
+                                         @Qualifier(NOTIFIER_DELEGATOR) Notifiable notifierDelegatorService) {
+        this.categoriesService = categoriesService;
+        this.notifierDelegatorService = notifierDelegatorService;
+    }
 
     @GetMapping("/")
     public String showUserInterface(Model model) {
@@ -35,11 +44,7 @@ public class NotificationMessageController {
                              RedirectAttributes redirectAttributes) {
         model.addAttribute("submittedCategory", category);
         model.addAttribute("submittedMessage", message);
-        MessageFormModel messageFormModel = MessageFormModel.builder()
-                .category(category)
-                .message(message)
-                .build();
-        notifierDelegatorService.incomingMessage(messageFormModel);
+        notifierDelegatorService.notifyIncomingMessage(NotificationMessage.builder().message(message).category(CategoryEnum.valueOf(category)).build());
 
         if (true) {
             redirectAttributes.addFlashAttribute("successMessage", "Message saved successfully!");

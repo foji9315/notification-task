@@ -17,6 +17,6 @@ public class User {
     private String name;
     private String email;
     private String phoneNumber;
-    private List<Category> subscribed;
+    private List<CategoryEnum> subscribed;
     private List<String> channels;
 }

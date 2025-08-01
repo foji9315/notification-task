@@ -3,6 +3,7 @@ package com.fji.notification.model;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -11,5 +12,6 @@ public class NotificationMessage {
 
     private UUID id;
     private String message;
-    private String category;
+    private CategoryEnum category;
+    private LocalDateTime createdAt;
 }

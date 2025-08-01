@@ -1,8 +1,9 @@
 package com.fji.notification.service.notifiers;
 
-import com.fji.notification.model.dto.MessageFormModel;
+import com.fji.notification.model.NotificationMessage;
 
 @FunctionalInterface
 public interface Notifiable {
-    void incomingMessage(MessageFormModel messageFormModel);
+
+    void notifyIncomingMessage(NotificationMessage notificationMessage);
 }
