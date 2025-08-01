@@ -11,5 +11,6 @@ public class MessageFormModel {
 
     private String message;
     private String category;
+    private String createdAt;
 }
 

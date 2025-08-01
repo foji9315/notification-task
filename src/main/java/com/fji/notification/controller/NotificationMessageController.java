@@ -4,6 +4,7 @@ import com.fji.notification.model.CategoryEnum;
 import com.fji.notification.model.NotificationMessage;
 import com.fji.notification.model.dto.MessageFormModel;
 import com.fji.notification.service.CategoriesService;
+import com.fji.notification.service.MessageLogService;
 import com.fji.notification.service.notifiers.Notifiable;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -22,18 +23,23 @@ public class NotificationMessageController {
 
     private final CategoriesService categoriesService;
     private final Notifiable notifierDelegatorService;
+    private final MessageLogService messageLogService;
 
     public NotificationMessageController(CategoriesService categoriesService,
+                                         MessageLogService messageLogService,
                                          @Qualifier(NOTIFIER_DELEGATOR) Notifiable notifierDelegatorService) {
         this.categoriesService = categoriesService;
+        this.messageLogService = messageLogService;
         this.notifierDelegatorService = notifierDelegatorService;
     }
 
     @GetMapping("/")
     public String showUserInterface(Model model) {
         List<String> categories = categoriesService.getAllCategoryNames();
+        List<MessageFormModel> publishedMessages= messageLogService.getAllStoredMessages();
         model.addAttribute("messageFormModel", new MessageFormModel());
         model.addAttribute("categories", categories);
+        model.addAttribute("publishedMessages", publishedMessages);
         return "home";
     }
 

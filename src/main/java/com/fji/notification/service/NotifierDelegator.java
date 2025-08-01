@@ -3,10 +3,10 @@ package com.fji.notification.service;
 import com.fji.notification.model.CategoryEnum;
 import com.fji.notification.model.NotificationMessage;
 import com.fji.notification.repository.MessageLogRepository;
-import com.fji.notification.service.notifiers.FinanceNotifier;
-import com.fji.notification.service.notifiers.MovieNotifier;
+import com.fji.notification.service.notifiers.impl.FinanceNotifier;
+import com.fji.notification.service.notifiers.impl.MovieNotifier;
 import com.fji.notification.service.notifiers.Notifiable;
-import com.fji.notification.service.notifiers.SportNotifier;
+import com.fji.notification.service.notifiers.impl.SportNotifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

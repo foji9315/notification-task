@@ -1,7 +1,8 @@
-package com.fji.notification.service.notifiers;
+package com.fji.notification.service.notifiers.impl;
 
 import com.fji.notification.model.NotificationMessage;
 import com.fji.notification.publisher.NotificationEventManager;
+import com.fji.notification.service.notifiers.Notifiable;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
