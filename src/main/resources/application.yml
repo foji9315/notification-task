@@ -3,3 +3,7 @@ spring:
     name: notification
   profiles:
     active: database
+
+logging:
+  level:
+    liquibase: WARN
