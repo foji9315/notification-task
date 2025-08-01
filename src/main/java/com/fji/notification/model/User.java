@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -17,6 +18,6 @@ public class User {
     private String name;
     private String email;
     private String phoneNumber;
-    private List<CategoryEnum> subscribed;
-    private List<String> channels;
+    private Set<CategoryEnum> subscribed;
+    private Set<ChannelEnum> channels;
 }
