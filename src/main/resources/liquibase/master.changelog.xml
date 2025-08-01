@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <!-- contexts -->
+    <property name="ALL" value="all"/>
+    <property name="DEV" value="development"/>
+    <property name="MIN_DATA" value="minimalData"/>
+
+    <property name="AuthorName" value="Iflores"/>
+
+    <property name="emptyDBTag" value="empty"/>
+    <property name="preserveSchemaCase" value="true"/>
+
+    <!--Initial empty tag to allow complete rollback-->
+    <changeSet author="${AuthorName}" id="tag-emptyDatabase-0" context="${ALL}"
+               labels="initialVersion_${emptyDBTag}">
+        <tagDatabase tag="${emptyDBTag}"/>
+    </changeSet>
+
+    <!-- version changeLog files -->
+    <include file="1.0.0/1.0.0.changelog.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

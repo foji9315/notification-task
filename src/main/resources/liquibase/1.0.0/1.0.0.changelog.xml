@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+
+    <!-- contexts -->
+    <property name="ALL" value="all"/>
+    <property name="DEV" value="development"/>
+    <property name="MIN_DATA" value="minimalData"/>
+
+    <property name="AuthorName" value="Iflores"/>
+
+    <property name="version.1.0.0" value="1.0.0"/>
+    <property name="prev.version" value="empty" global="false"/>
+
+
+    <changeSet author="${AuthorName}" id="precondition-0" context="${ALL}"
+               labels="${version.1.0.0}_precondition">
+        <preConditions onFail="HALT" onError="HALT">
+            <sqlCheck expectedResult="1">
+                select count(*) from DATABASECHANGELOG where description ='tagDatabase' AND tag
+                ='${prev.version}'
+            </sqlCheck>
+        </preConditions>
+    </changeSet>
+
+<!--    Had a couple of issues to define a new schema and grants in h2, leave it for other kind of dbs -->
+<!--    <include file="schema/schema.changelog.xml" relativeToChangelogFile="true"/>-->
+    <include file="tables/tables.changelog.xml" relativeToChangelogFile="true"/>
+<!--    <include file="grants/grants.changelog.xml" relativeToChangelogFile="true"/>-->
+<!--    <include file="data/data.changelog.xml" relativeToChangelogFile="true"/>-->
+
+
+    <changeSet author="${AuthorName}" id="tag-baseline-1" context="${ALL}"
+               labels="${version.1.0.0}">
+        <tagDatabase tag="${version.1.0.0}"/>
+    </changeSet>
+
+</databaseChangeLog>

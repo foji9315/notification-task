@@ -7,9 +7,12 @@ import com.fji.notification.service.notifiers.impl.FinanceNotifier;
 import com.fji.notification.service.notifiers.impl.MovieNotifier;
 import com.fji.notification.service.notifiers.Notifiable;
 import com.fji.notification.service.notifiers.impl.SportNotifier;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+
+import static com.fji.notification.repository.impl.PublishedMessageRepositoryH2Impl.H2_REPOSITORY;
 
 @Service(NotifierDelegator.NOTIFIER_DELEGATOR)
 public class NotifierDelegator implements Notifiable {
@@ -21,7 +24,7 @@ public class NotifierDelegator implements Notifiable {
     public NotifierDelegator(SportNotifier sportNotifier,
                              FinanceNotifier financeNotifier,
                              MovieNotifier movieNotifier,
-                             MessageLogRepository messageLogRepository) {
+                             @Qualifier(H2_REPOSITORY) MessageLogRepository messageLogRepository) {
         this.notifiers = Map.of(
                 CategoryEnum.SPORT, sportNotifier,
                 CategoryEnum.FINANCE, financeNotifier,
