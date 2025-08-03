@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static com.fji.notification.configuration.AsyncConfiguration.ASYNC_EXECUTOR_NOTIFIER;
 
@@ -34,16 +36,19 @@ public class NotificationEventManager {
         listeners.remove(listener);
     }
 
-//    @Async(ASYNC_EXECUTOR_NOTIFIER)
+    @Async(ASYNC_EXECUTOR_NOTIFIER)
     public void notify(NotificationMessage notificationMessage) {
-        Set<ChannelListener> users = listeners;
         log.info("Sending {} notification to {} users", notificationMessage.getCategory(), listeners.size());
-        List<NotificationLog> notificationLogs = new ArrayList<>(users.size());
-        for (ChannelListener listener : users) {
+        List<NotificationLog> notificationLogs = new ArrayList<>(listeners.size());
+        for (ChannelListener listener : listeners) {
             NotificationLog notificationLog = listener.sentNotification(notificationMessage);
-            notificationLogRepository.insertNotificationLog(notificationLog);
             notificationLogs.add(notificationLog);
         }
-        log.info("NotificationLogs generated: {}", notificationLogs);
+        log.info("Storing NotificationLogs generated with ids : {}", notificationLogs.stream().map(NotificationLog::getId).map(UUID::toString).collect(Collectors.joining(", ")));
+        int rowsInserted = notificationLogRepository.insertBatchOfNotificationLog(notificationLogs);
+        log.info("Number of notificationLogs inserted {}, expected {} rows.", rowsInserted, notificationLogs.size());
+        if(rowsInserted < listeners.size()) {
+            log.warn("No all listeners where notified correctly, using retry strategy");
+        }
     }
 }

@@ -8,6 +8,7 @@ import com.fji.notification.model.mappers.MessagesMapper;
 import com.fji.notification.repository.MessageLogRepository;
 import com.fji.notification.service.MessageLogService;
 import com.fji.notification.service.notifiers.Notifiable;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,7 @@ public class MessageLogServiceImpl implements MessageLogService {
     }
 
     @Override
+    @Transactional
     public boolean processIncomingMessage(MessageFormModel messageFormModel) {
         UUID newId = UUID.randomUUID();
         NotificationMessage newMessageToNotify = NotificationMessage.builder()
@@ -54,7 +56,7 @@ public class MessageLogServiceImpl implements MessageLogService {
                 .build();
         Optional<NotificationMessage> maybeNotificationMessage = messageLogRepository.insertNewMessage(newMessageToNotify);
         maybeNotificationMessage.ifPresent(notifierDelegatorService::notifyIncomingMessage);
-        log.info("NotificationMessageLog created correctly and sending Notifications to users in background");
+        log.info("NotificationMessageLog created with id: {} and sending Notifications to users in background", newId);
         return maybeNotificationMessage.isPresent();
     }
 }

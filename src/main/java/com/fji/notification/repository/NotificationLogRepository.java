@@ -9,4 +9,6 @@ public interface NotificationLogRepository {
     List<NotificationLog> getAllNotificationLogs();
 
     int insertNotificationLog(NotificationLog notificationLog);
+
+    int insertBatchOfNotificationLog(List<NotificationLog> notificationLogs);
 }

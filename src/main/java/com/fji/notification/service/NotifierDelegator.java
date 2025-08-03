@@ -6,10 +6,12 @@ import com.fji.notification.service.notifiers.impl.FinanceNotifier;
 import com.fji.notification.service.notifiers.impl.MovieNotifier;
 import com.fji.notification.service.notifiers.Notifiable;
 import com.fji.notification.service.notifiers.impl.SportNotifier;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+@Slf4j
 @Service(NotifierDelegator.NOTIFIER_DELEGATOR)
 public class NotifierDelegator implements Notifiable {
 
@@ -29,6 +31,7 @@ public class NotifierDelegator implements Notifiable {
     @Override
     public void notifyIncomingMessage(NotificationMessage notificationMessage) {
         CategoryEnum channelToNotifyListeners = notificationMessage.getCategory();
+        log.info("Notifications for users subscribed to Category {} is in process", channelToNotifyListeners);
         notifiers.get(channelToNotifyListeners).notifyIncomingMessage(notificationMessage);
     }
 }

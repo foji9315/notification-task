@@ -2,7 +2,7 @@ spring:
   application:
     name: notification
   profiles:
-    active: database
+    active: h2database
 
 logging:
   level:
