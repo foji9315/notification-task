@@ -1,6 +1,6 @@
-package com.fji.notification.facrory.impl;
+package com.fji.notification.factory.impl;
 
-import com.fji.notification.facrory.ChannelListenerFactory;
+import com.fji.notification.factory.ChannelListenerFactory;
 import com.fji.notification.listeners.ChannelListener;
 import com.fji.notification.listeners.impl.PushNotificationChannel;
 import com.fji.notification.model.User;

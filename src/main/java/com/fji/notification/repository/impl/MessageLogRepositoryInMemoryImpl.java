@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class MessageLogRepositoryImpl implements MessageLogRepository {
+public class MessageLogRepositoryInMemoryImpl implements MessageLogRepository {
 
     private static final Set<NotificationMessage> inMemoryMessages = new HashSet<>();
 

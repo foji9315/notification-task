@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static com.fji.notification.repository.impl.PublishedMessageRepositoryH2Impl.H2_REPOSITORY;
+import static com.fji.notification.repository.impl.PublishedMessageRepositoryH2Impl.H2_MSG_LOG_REPOSITORY;
 import static com.fji.notification.service.NotifierDelegator.NOTIFIER_DELEGATOR;
 
 @Slf4j
@@ -29,7 +29,7 @@ public class MessageLogServiceImpl implements MessageLogService {
     private final Notifiable notifierDelegatorService;
 
     public MessageLogServiceImpl(@Qualifier(NOTIFIER_DELEGATOR) Notifiable notifierDelegatorService,
-                                 @Qualifier(H2_REPOSITORY) MessageLogRepository messageLogRepository) {
+                                 @Qualifier(H2_MSG_LOG_REPOSITORY) MessageLogRepository messageLogRepository) {
         this.notifierDelegatorService = notifierDelegatorService;
         this.messageLogRepository = messageLogRepository;
     }
@@ -54,6 +54,7 @@ public class MessageLogServiceImpl implements MessageLogService {
                 .build();
         Optional<NotificationMessage> maybeNotificationMessage = messageLogRepository.insertNewMessage(newMessageToNotify);
         maybeNotificationMessage.ifPresent(notifierDelegatorService::notifyIncomingMessage);
+        log.info("NotificationMessageLog created correctly and sending Notifications to users in background");
         return maybeNotificationMessage.isPresent();
     }
 }

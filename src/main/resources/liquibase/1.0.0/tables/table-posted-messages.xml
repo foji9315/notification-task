@@ -4,28 +4,36 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <property name="tableName" value="posted_messages"/>
+    <property name="postMsgT" value="posted_messages"/>
 
     <changeSet id="table-posted-messages-0" author="${AuthorName}">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists schemaName="${schemaName}" tableName="${tableName}" />
+                <tableExists schemaName="${schemaName}" tableName="${postMsgT}"/>
             </not>
         </preConditions>
-        <createTable schemaName="${schemaName}" tableName="${tableName}">
-            <column name="id" type="CHAR(36)" >
-"                <constraints primaryKey="true" primaryKeyName="pk_message_id" nullable="false"/>
-"            </column>
+        <createTable schemaName="${schemaName}" tableName="${postMsgT}">
+            <column name="id" type="CHAR(36)">
+                <constraints primaryKey="true" primaryKeyName="pk_message_id" nullable="false"/>
+            </column>
             <column name="message" type="VARCHAR(200)">
                 <constraints nullable="false"/>
             </column>
             <column name="category" type="VARCHAR(20)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
-            <column name="created_at" type="datetime2">
-                <constraints nullable="false" />
+            <column name="created_at" type="datetime2" defaultValue="NOW()">
+                <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+    <changeSet author="${AuthorName}" context="${ALL}" id="table-notification-log-1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Db does not support indexes">
+            <not>
+                <dbms type="h2"/>
+            </not>
+        </preConditions>
+        <sql>CREATE INDEX IF NOT EXISTS posted_message_idx01 ON posted_message (LOWER(category) ASC)</sql>
     </changeSet>
 
 </databaseChangeLog>

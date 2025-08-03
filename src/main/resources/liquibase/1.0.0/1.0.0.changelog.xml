@@ -27,8 +27,8 @@
 
 <!--    Had a couple of issues to define a new schema and grants in h2, leave it for other kind of dbs -->
 <!--    <include file="schema/schema.changelog.xml" relativeToChangelogFile="true"/>-->
-    <include file="tables/tables.changelog.xml" relativeToChangelogFile="true"/>
 <!--    <include file="grants/grants.changelog.xml" relativeToChangelogFile="true"/>-->
+    <include file="tables/tables.changelog.xml" relativeToChangelogFile="true"/>
 <!--    <include file="data/data.changelog.xml" relativeToChangelogFile="true"/>-->
 
 

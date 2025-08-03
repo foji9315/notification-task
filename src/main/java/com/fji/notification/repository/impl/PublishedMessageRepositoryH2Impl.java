@@ -10,12 +10,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.fji.notification.repository.impl.PublishedMessageRepositoryH2Impl.H2_REPOSITORY;
-
-@Repository(H2_REPOSITORY)
+@Repository(PublishedMessageRepositoryH2Impl.H2_MSG_LOG_REPOSITORY)
 public class PublishedMessageRepositoryH2Impl implements MessageLogRepository {
 
-    public static final String H2_REPOSITORY = "h2Repository";
+    public static final String H2_MSG_LOG_REPOSITORY = "h2MessageLogRepository";
     private static final String GET_ALL_POSTED_MESSAGES = "SELECT id, message, category, created_at FROM posted_messages";
     private static final String INSERT_NEW_POSTED_MESSAGE = "INSERT INTO posted_messages(id, message, category, created_at) VALUES (?, ?, ?, NOW())";
 

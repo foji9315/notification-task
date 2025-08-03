@@ -1,4 +1,4 @@
-package com.fji.notification.facrory;
+package com.fji.notification.factory;
 
 import com.fji.notification.listeners.ChannelListener;
 import com.fji.notification.model.User;

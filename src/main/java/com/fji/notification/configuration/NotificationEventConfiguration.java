@@ -1,9 +1,9 @@
 package com.fji.notification.configuration;
 
-import com.fji.notification.facrory.ChannelListenerFactory;
-import com.fji.notification.facrory.impl.EmailNotificationChannelFactory;
-import com.fji.notification.facrory.impl.PushNotificationChannelFactory;
-import com.fji.notification.facrory.impl.SMSNotificationChannelFactory;
+import com.fji.notification.factory.ChannelListenerFactory;
+import com.fji.notification.factory.impl.EmailNotificationChannelFactory;
+import com.fji.notification.factory.impl.PushNotificationChannelFactory;
+import com.fji.notification.factory.impl.SMSNotificationChannelFactory;
 import com.fji.notification.model.CategoryEnum;
 import com.fji.notification.model.ChannelEnum;
 import com.fji.notification.model.User;
