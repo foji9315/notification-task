@@ -1,7 +1,6 @@
 package com.fji.notification.validation;
 
 import com.fji.notification.exception.NotificationServiceException;
-import com.fji.notification.model.CategoryEnum;
 import com.fji.notification.model.dto.MessageFormModel;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,7 @@ public class MessageFormValidator {
 
     private static void validateCategory(String categoryValue) {
         if (isBlank(categoryValue) ||
-                isNotValidCategoryValue(categoryValue)) {
+                CommonValidator.isNotValidCategoryValue(categoryValue)) {
             throw NotificationServiceException.buildNotificationException(
                     INVALID_VALUE.getErrorCode(),
                     INVALID_VALUE.getMessage(),
@@ -52,12 +51,4 @@ public class MessageFormValidator {
         }
     }
 
-    private static boolean isNotValidCategoryValue(String categoryValue) {
-        try {
-            CategoryEnum.valueOf(categoryValue);
-        } catch (IllegalArgumentException e) {
-            return true;
-        }
-        return false;
-    }
 }

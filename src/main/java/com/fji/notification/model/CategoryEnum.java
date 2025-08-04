@@ -10,7 +10,8 @@ import java.util.UUID;
 public enum CategoryEnum {
     SPORT("SPORT"),
     FINANCE("FINANCE"),
-    MOVIES("MOVIES");
+    MOVIES("MOVIES"),
+    UNKNOW("");
 
     private final String name;
 }

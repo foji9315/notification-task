@@ -16,14 +16,14 @@ import static com.fji.notification.util.DateTimeUtils.safeConverterLocalDateTime
 @Component
 public class NotificationLogRowMapper implements RowMapper<NotificationLog> {
 
-    private static final String ID_COLUMN = "id";
-    private static final String MESSAGE_ID_COLUMN = "message_id";
-    private static final String SUBSCRIBER_ID_COLUMN = "subscriber_id";
-    private static final String CHANNEL_TYPE_COLUMN = "channel_type";
-    private static final String PUBLISHED_COLUMN = "published";
-    private static final String STATUS_COLUMN = "status";
-    private static final String SEND_DATE_COLUMN = "send_date";
-    private static final String RECEIVED_DATE_COLUMN = "subscriber_received_date";
+    public static final String ID_COLUMN = "id";
+    public static final String MESSAGE_ID_COLUMN = "message_id";
+    public static final String SUBSCRIBER_ID_COLUMN = "subscriber_id";
+    public static final String CHANNEL_TYPE_COLUMN = "channel_type";
+    public static final String PUBLISHED_COLUMN = "published";
+    public static final String STATUS_COLUMN = "status";
+    public static final String SEND_DATE_COLUMN = "send_date";
+    public static final String RECEIVED_DATE_COLUMN = "subscriber_received_date";
 
     @Override
     public NotificationLog mapRow(ResultSet rs, int rowNum) throws SQLException {
