@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MessagesMapper {
 
-    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd  HH:mm:ss");
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
 
     public static UserShowMessageModel mapToDto(NotificationMessage notificationMessage) {
         return UserShowMessageModel.builder()

@@ -52,10 +52,9 @@ public class NotificationMessageController {
     }
 
     @PostMapping("/messages")
-    public String submitForm(@RequestParam("category") String category,
-                             @RequestParam("message") String message,
+    public String submitForm(@RequestParam(name = "category", required = false) String category,
+                             @RequestParam(name = "message", required = false) String message,
                              RedirectAttributes redirectAttributes) {
-
 
         MessageFormModel sanitizedMessage = MessageFormModel.builder()
                 .category(PLAIN_TEXT_SANITIZE_POLICY.sanitize(category))

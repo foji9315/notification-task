@@ -7,6 +7,8 @@ import com.fji.notification.model.User;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
@@ -36,6 +38,7 @@ public class TestConstants {
     public static final UUID TEST_UUID = UUID.fromString("0544271b-b563-464f-9009-aacb0b03fafe");
     public static final String TEST_TIME_STAMP_STRING = "2025-08-03 04:39:58";
     public static final LocalDateTime TEST_LOCAL_DATE_TIME = LocalDateTime.of(2025, 8,3,4,39,58,0);
+    public static final Timestamp TEST_TIME_STAMP = Timestamp.valueOf(TEST_LOCAL_DATE_TIME);
 
 
 }

@@ -31,6 +31,10 @@ public class NotifierDelegator implements Notifiable {
     @Override
     public void notifyIncomingMessage(NotificationMessage notificationMessage) {
         CategoryEnum channelToNotifyListeners = notificationMessage.getCategory();
+        if(CategoryEnum.UNKNOW.equals(channelToNotifyListeners)) {
+            log.warn("Category {} could not be processed.", channelToNotifyListeners);
+            return;
+        }
         log.info("Notifications for users subscribed to Category {} is in process", channelToNotifyListeners);
         notifiers.get(channelToNotifyListeners).notifyIncomingMessage(notificationMessage);
     }

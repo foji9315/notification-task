@@ -101,12 +101,8 @@
 				<version>0.8.12</version> <!-- Use the latest stable version -->
 				<configuration>
 					<excludes>
-						<!-- Exclude specific configuration classes -->
-						<exclude>com/example/config/AppConfig.class</exclude>
-						<!-- Exclude all classes in a configuration package -->
-						<exclude>com.fji.notification.model/**/*</exclude>
-						<!-- Exclude classes ending with "Config" or "Configuration" -->
-<!--						<exclude>**/*Config.class</exclude>-->
+						<exclude>com/example/config/**/*</exclude>
+<!--						<exclude>com.fji.notification.model/**/*</exclude>-->
 						<exclude>**/*Configuration.class</exclude>
 					</excludes>
 				</configuration>

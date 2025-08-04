@@ -44,7 +44,10 @@ public class NotificationEventManager {
             NotificationLog notificationLog = listener.sentNotification(notificationMessage);
             notificationLogs.add(notificationLog);
         }
-        log.info("Storing NotificationLogs generated with ids : {}", notificationLogs.stream().map(NotificationLog::getId).map(UUID::toString).collect(Collectors.joining(", ")));
+        log.info("Storing NotificationLogs generated with ids : {}", notificationLogs.stream()
+                .map(NotificationLog::getId)
+                .map(UUID::toString)
+                .collect(Collectors.joining(", ")));
         int rowsInserted = notificationLogRepository.insertBatchOfNotificationLog(notificationLogs);
         log.info("Number of notificationLogs inserted {}, expected {} rows.", rowsInserted, notificationLogs.size());
         if(rowsInserted < listeners.size()) {
