@@ -4,6 +4,10 @@ spring:
   profiles:
     active: h2database
 
+server:
+  session:
+    tracking-modes: cookie
+
 logging:
   level:
     liquibase: WARN

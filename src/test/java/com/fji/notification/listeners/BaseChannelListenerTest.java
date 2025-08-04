@@ -40,7 +40,7 @@ public abstract class BaseChannelListenerTest {
 
     public void sentNotificationExceptionTest(ChannelListener channelListenerToTest) {
         /*
-        tried to used mockStatic but for some reason last test throws a npe error
+        tried to use mockStatic but for some reason last test throws a npe error
         NotificationLog notificationLog;
         try (MockedStatic<LocalDateTime> localDateTimeMockedStatic = mockStatic(LocalDateTime.class)) {
             localDateTimeMockedStatic.when(LocalDateTime::now).thenThrow(new Exception());

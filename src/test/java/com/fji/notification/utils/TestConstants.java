@@ -19,6 +19,7 @@ public class TestConstants {
     public static final String MESSAGE_MORE_THAN_200_CHARACTERS = "Millions of motorists have been denied a path to claim compensation for hidden commissions paid on car loans following a Supreme Court ruling. The UKs highest court sided with finance companies in two out of three crucial test cases focusing on commission payments made by banks and other credit providers to car dealers";
     public static final String MESSAGE_WITH_200_CHARACTERS = "Millions of motorists have been denied a path to claim compensation for hidden commissions paid on car loans following a Supreme Court ruling. The UKs highest court sided with finance companies in tw.";
     // MOCK USER DATA
+    public static final UUID MOCK_USER_ID_UUID = UUID.randomUUID();
     public static final String MOCK_USER_ID = UUID.randomUUID().toString();
     public static final String MOCK_USER_NAME = "MOCK_USER";
     public static final String MOCK_EMAIL = "mock@email.com";
@@ -35,10 +36,10 @@ public class TestConstants {
 
     // Generals
     public static final String TEST_UUID_STRING = "0544271b-b563-464f-9009-aacb0b03fafe";
-    public static final UUID TEST_UUID = UUID.fromString("0544271b-b563-464f-9009-aacb0b03fafe");
+    public static final String TEST_UUID_2_STRING = "226be55d-5906-43ad-bf28-39a3cb5a7e4a";
+    public static final UUID TEST_UUID = UUID.fromString(TEST_UUID_STRING);
+    public static final UUID TEST_UUID_2 = UUID.fromString(TEST_UUID_2_STRING);
     public static final String TEST_TIME_STAMP_STRING = "2025-08-03 04:39:58";
     public static final LocalDateTime TEST_LOCAL_DATE_TIME = LocalDateTime.of(2025, 8,3,4,39,58,0);
     public static final Timestamp TEST_TIME_STAMP = Timestamp.valueOf(TEST_LOCAL_DATE_TIME);
-
-
 }
