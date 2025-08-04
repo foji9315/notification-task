@@ -2,6 +2,7 @@ package com.fji.notification.repository.rowmapper;
 
 import com.fji.notification.model.CategoryEnum;
 import com.fji.notification.model.NotificationMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+@Slf4j
 @Component
 public class MessageRowMapper implements RowMapper<NotificationMessage> {
 
@@ -19,6 +21,7 @@ public class MessageRowMapper implements RowMapper<NotificationMessage> {
 
     @Override
     public NotificationMessage mapRow(ResultSet rs, int rowNum) throws SQLException {
+        log.debug("Mapping row {}", rowNum);
         return NotificationMessage.builder()
                 .id(UUID.fromString(rs.getString(ID_COLUMN_NAME)))
                 .message(rs.getString(MESSAGE_COLUMN_NAME))

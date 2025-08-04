@@ -7,6 +7,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder
 @NoArgsConstructor
+@EqualsAndHashCode
 public class MessageFormModel extends UiMessageModel {
 }
 

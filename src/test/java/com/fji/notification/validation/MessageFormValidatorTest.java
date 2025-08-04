@@ -3,6 +3,7 @@ package com.fji.notification.validation;
 import com.fji.notification.exception.NotificationServiceException;
 import com.fji.notification.model.CategoryEnum;
 import com.fji.notification.model.dto.MessageFormModel;
+import com.fji.notification.utils.TestConstants;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,9 +21,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MessageFormValidatorTest {
 
-    private static final String MESSAGE_MORE_THAN_200_CHARACTERS = "Millions of motorists have been denied a path to claim compensation for hidden commissions paid on car loans following a Supreme Court ruling. The UK's highest court sided with finance companies in two out of three crucial test cases focusing on commission payments made by banks and other credit providers to car dealers";
-    private static final String MESSAGE_WITH_200_CHARACTERS = "Millions of motorists have been denied a path to claim compensation for hidden commissions paid on car loans following a Supreme Court ruling. The UK's highest court sided with finance companies in tw";
-
     @ParameterizedTest
     @ValueSource(strings = {"SPORT", "FINANCE", "MOVIES"})
     void validateCategoryTest(String categoryValue) {
@@ -38,7 +36,7 @@ class MessageFormValidatorTest {
     @ValueSource(
             strings = {
                     "Not blank message",
-                    MESSAGE_WITH_200_CHARACTERS
+                    TestConstants.MESSAGE_WITH_200_CHARACTERS
             }
     )
     void validateMessageTest(String messageValue) {
@@ -66,7 +64,7 @@ class MessageFormValidatorTest {
 
     @ParameterizedTest
     @NullSource
-    @ValueSource(strings = {"", " ", MESSAGE_MORE_THAN_200_CHARACTERS})
+    @ValueSource(strings = {"", " ", TestConstants.MESSAGE_MORE_THAN_200_CHARACTERS})
     void validateFailsForMessageTest(String messageValue) {
         MessageFormModel messageToValidate =
                 MessageFormModel.builder()

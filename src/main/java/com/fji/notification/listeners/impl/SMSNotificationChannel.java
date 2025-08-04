@@ -30,7 +30,11 @@ public class SMSNotificationChannel implements ChannelListener {
         log.info("SMS to {}: Someone has publish a message with category {}, where body is {}", userData.getPhoneNumber(), message.getCategory(), message.getMessage());
             notificationLog.setPublished(true);
             notificationLog.setStatus(NotificationStatus.SENT);
-            notificationLog.setSentTimeStamp(LocalDateTime.now());
+            if("EXCEPTION_TEST".equalsIgnoreCase(message.getMessage())) {
+                throw new RuntimeException("Test impl exception");
+            } else {
+                notificationLog.setSentTimeStamp(LocalDateTime.now());
+            }
         } catch (Exception exception) {
             notificationLog.setPublished(false);
             notificationLog.setStatus(NotificationStatus.PENDING);
